@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "firstName": "doan",
+      "lastName": "duy",
+      "email": "a",
+      "password": "123123123",
+      "confirmPassword": "123123123",
+      "id": 1,
+      "role": "user"
+    },
+    {
+      "firstName": "asd",
+      "lastName": "da",
+      "email": "dasd@.com",
+      "password": "123123123",
+      "confirmPassword": "123123123",
+      "id": 2,
+      "role": "user"
+    }
+  ]
+}
