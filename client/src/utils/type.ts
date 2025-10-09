@@ -7,20 +7,20 @@ export type User={
     role: "user" | "admin"
 }
 export type Category={
-    id: number,
+    id: number | null,
     name: string,
     description: string,
     createdAt: string
 }
-export type Vocab={
-    id: number,
+export type Vocabulary={
+    id: number | null,
     categoryId: number,
     word: string,
     meaning: string,
     isLearned: boolean
 }
 export type Result={
-    id: number,
+    id: number | null,
     userId: number,
     categoryId: number,
     score: number,

@@ -1,22 +1,64 @@
 {
   "users": [
     {
-      "firstName": "doan",
-      "lastName": "duy",
-      "email": "a",
-      "password": "123123123",
-      "confirmPassword": "123123123",
+      "firstName": "Duy",
+      "lastName": "Doãn",
+      "email": "duy@gmail.com",
+      "password": "12345678",
       "id": 1,
       "role": "user"
     },
     {
-      "firstName": "asd",
-      "lastName": "da",
-      "email": "dasd@.com",
+      "firstName": "john",
+      "lastName": "dcom",
       "password": "123123123",
-      "confirmPassword": "123123123",
+      "email": "aa@.com",
       "id": 2,
       "role": "user"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "createdAt": "14:37:20 7/10/2025",
+      "name": "Động vật",
+      "description": "Động vật"
+    },
+    {
+      "id": 2,
+      "createdAt": "15:42:49 7/10/2025",
+      "name": "a",
+      "description": "a"
+    }
+  ],
+  "vocabularies": [
+    {
+      "id": 2,
+      "isLearned": false,
+      "word": "Computer",
+      "meaning": "may tinh",
+      "categoryId": "1"
+    },
+    {
+      "id": 3,
+      "isLearned": false,
+      "word": "a",
+      "meaning": "a",
+      "categoryId": "2"
+    },
+    {
+      "id": 4,
+      "isLearned": false,
+      "word": "motorcycle",
+      "meaning": "xe may",
+      "categoryId": "1"
+    },
+    {
+      "id": 5,
+      "isLearned": false,
+      "word": "a",
+      "meaning": "a",
+      "categoryId": "1"
     }
   ]
 }

@@ -1,0 +1,73 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Inter";
+}
+.header{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 100px;
+    box-shadow: 0px 16px 48px 0px #0000002D;
+}
+.header nav{
+    display: flex;
+    gap: 16px;
+}
+.header nav a{
+    font-weight: 400;
+    font-size: 19.6px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    color: #374151;
+    text-decoration: none;
+    color: black;
+}
+.header nav #logo{
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 18.9px;
+    line-height: 28px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    color: black;
+}
+.header nav .active{
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 17.9px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    color: #3B82F6;
+}
+.header .logout{
+    background-color: #d4534a;
+    width: 105px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+}
+.footer{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0px 16px 48px 0px #0000002D;
+}
+.footer p{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+}

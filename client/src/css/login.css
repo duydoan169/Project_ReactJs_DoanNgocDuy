@@ -92,8 +92,8 @@
     margin-top: -2px;
     margin-left: 2px;
 }
-.body .form-container .registerButton{
-    background-color: #22C55E;
+.body .form-container .loginButton{
+    background-color: #3B82F6;
     border: none;
     border-radius: 6px;
     color: white;

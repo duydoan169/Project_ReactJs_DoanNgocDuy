@@ -1,12 +1,31 @@
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Register from './pages/Register'
+import Login from './pages/Login'
+import MainLayout from './layout/MainLayout'
+import HomePage from './pages/HomePage'
+import Categories from './pages/Categories'
+import Vocabularies from './pages/Vocabulary'
 
 export default function App() {
   const routes = createBrowserRouter([
     {
       path: "/",
-      element: <h1>Trang chu</h1>
+      element: <MainLayout></MainLayout>,
+      children: [
+        {
+          index: true,
+          element: <HomePage></HomePage>
+        },
+        {
+          path: "/categories",
+          element: <Categories></Categories>
+        },
+        {
+          path: "/vocabularies",
+          element: <Vocabularies></Vocabularies>
+        }
+      ]
     },
     {
       path: "/register",
@@ -14,7 +33,7 @@ export default function App() {
     },
     {
       path: "/login",
-      element: <h1>Login</h1>
+      element: <Login></Login>
     }
   ])
   return (

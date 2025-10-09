@@ -2,7 +2,7 @@ import axios from "axios";
 import type { User } from "../utils/type";
 
 export const getAllUser = async () => {
-  const res = await axios.get<User[]>("http://localhost:8080/users");
+  const res = await axios.get("http://localhost:8080/users");
   return res.data;
 }
 
