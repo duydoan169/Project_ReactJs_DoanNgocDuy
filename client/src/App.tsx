@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage'
 import Categories from './pages/Categories'
 import Vocabularies from './pages/Vocabulary'
 import Flashcard from './pages/Flashcard'
+import Quizz from './pages/Quizz'
 
 export default function App() {
   const routes = createBrowserRouter([
@@ -29,6 +30,10 @@ export default function App() {
         {
           path: "/flashcard",
           element: <Flashcard></Flashcard>
+        },
+        {
+          path: "/quizz",
+          element: <Quizz></Quizz>
         }
       ]
     },
