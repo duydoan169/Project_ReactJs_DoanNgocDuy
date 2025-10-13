@@ -1,0 +1,224 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Inter";
+}
+.container{
+    padding: 0 80px;
+    width: 100%;
+}
+.container .content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0px 24px;
+}
+.container .content .title{
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 26.8px;
+    line-height: 32px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    align-self: normal;
+}
+.container .content h2{
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 23.3px;
+    line-height: 28px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    align-self: normal;
+    margin-top: 12px;
+}
+.container .content .selectCategory{
+    width: 100%;
+    border: 1px solid #DEE2E6;
+    border-radius: 6px;
+    height: 43px;
+    padding: 9px 24px;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 19.2px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    color: #21252980;
+}
+.container .content .selectCategory option{
+    color: black;
+}
+.container .content .flipCard{
+    width: 672px;
+    height: 300px;
+    perspective: 1000px;
+    background-color: transparent;
+    margin-top: 10px;
+}
+.container .content .flipCard .innerFlipCard{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 8px;
+    box-shadow: 0px 16px 48px 0px #0000002D;
+}
+.container .content .flipCard .innerFlipCard .front, .back{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .content .flipCard .innerFlipCard .front{
+    transform: rotateY(0deg);
+}
+.container .content .flipCard .innerFlipCard .back{
+    transform: rotateY(180deg);
+}
+.container .content .flipCard.flipped .innerFlipCard{
+    transform: rotateY(180deg);
+}
+.container .content .flipCard h1{
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 34px;
+    line-height: 36px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+}
+.container .content .buttonLine{
+    display: flex;
+    gap: 16px;
+    margin-top: 25px;
+}
+.container .content .buttonLine button{
+    color: white;
+    font-weight: 400;
+    font-size: 19.6px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    padding: 8px 22px;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+}
+.container .content .buttonLine .previous, .next{
+    background-color: #3B82F6;
+}
+.container .content .buttonLine .previous:disabled, .next:disabled{
+    cursor: not-allowed;
+}
+.container .content .buttonLine .markAsLearned{
+    background-color: #22C55E;
+}
+.container .content .buttonLine .unmarkAsLearned{
+    background-color: #c52222;
+}
+.container .content .progressBar{
+    margin-top: 8px;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.container .content .progressBar .wordLine{
+    display: flex;
+    justify-content: space-between;
+}
+.container .content .progressBar .wordLine p{
+    font-weight: 400;
+    font-size: 19.6px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+}
+.container .content .progressBar .outerProgress{
+    width: 672px;
+    height: 10px;
+    border-radius: 9999px;
+    background-color: #E5E7EB;
+}
+.container .content .progressBar .innerProgress{
+    width: 50%;
+    height: 10px;
+    border-radius: 9999px;
+    background-color: #2664eb;
+}
+.container .content .table{
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px #00000026;
+    border-radius: 8px;
+    border-collapse: collapse;
+    border: none;
+}
+.container .content table td, th{
+    padding: 16px 24px;
+}
+.container .content table th{
+    color: #6B7280;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 11.8px;
+    line-height: 16px;
+    letter-spacing: 0.6px;
+    vertical-align: middle;
+}
+.container .content table td{
+    color: black;
+    font-size: 15.8px;
+}
+.container .content table tbody .learned{
+    color: #3ca34a;
+}
+.container .content table thead{
+    background-color: #f7f9fa;
+    text-align: left;
+}
+.container .content table thead #word{
+    width: 27%;
+}
+.container .content table thead #meaning{
+    width: 40%;
+}
+.container .content table thead #status{
+    width: 33%;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  margin-bottom: 15px;
+}
+
+.page-btn {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+  color: #333;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.page-btn.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

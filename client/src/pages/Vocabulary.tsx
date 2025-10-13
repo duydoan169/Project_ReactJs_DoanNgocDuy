@@ -7,6 +7,7 @@ import { addVocabulary, getAllVocabularies, removeVocabulary, updateVocabulary }
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { getAllCategories } from '../store/slices/categorySlice';
+import { getAllVocabulary } from '../apis/vocabularyAPI';
 export default function Vocabularies() {
   const [addModal, setAddModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
@@ -22,9 +23,10 @@ export default function Vocabularies() {
       return data.categories.categories;
     });
   const [edit, setEdit] = useState<Vocabulary | null>(null);
-  const {register, handleSubmit, reset, formState: { errors }}=useForm<{word: string, meaning: string, categoryId: number}>();
+  const {register, handleSubmit, reset, formState: { errors }, setError}=useForm<{word: string, meaning: string, categoryId: number}>();
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState<{wordSearch: string, categorySearch: number}>({wordSearch: "", categorySearch: 0});
+  
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>)=>{
     const {name, value} = e.target
     setSearch({...search, [name]: value});
@@ -57,22 +59,27 @@ export default function Vocabularies() {
   }
   const userSubmit = async (data: {word: string, meaning: string, categoryId: number})=>{
     try {
-      if(edit){
-        await dispatch(updateVocabulary({...edit, ...data}));
-        dispatch(getAllVocabularies({currentPage: page, search: search, limit: 5}));
-        Swal.fire({
-          title: "Sửa thành công",
-          icon: "success",
-        });
+      const fullVocab = (await getAllVocabulary({currentPage: 1, search: {wordSearch: "", categorySearch: 0}, limit: 999})).data;
+      if(!fullVocab.some((vocabulary: Vocabulary) => vocabulary.word == data.word)){
+        if(edit){
+          await dispatch(updateVocabulary({...edit, ...data}));
+          dispatch(getAllVocabularies({currentPage: page, search: search, limit: 5}));
+          Swal.fire({
+            title: "Sửa thành công",
+            icon: "success",
+          });
+        }else{
+          await dispatch(addVocabulary({id: null, isLearned: false, ...data}));
+          dispatch(getAllVocabularies({currentPage: page, search: search, limit: 5}));
+          Swal.fire({
+            title: "Thêm thành công",
+            icon: "success",
+          });
+        }
+        setAddModal(false)
       }else{
-        await dispatch(addVocabulary({id: null, isLearned: false, ...data}));
-        dispatch(getAllVocabularies({currentPage: page, search: search, limit: 5}));
-        Swal.fire({
-          title: "Thêm thành công",
-          icon: "success",
-        });
+        setError("word",{type: "custom", message: "Từ này đã tồn tại"})
       }
-      setAddModal(false)
     } catch (error) {
       console.log(error);
     }
@@ -98,10 +105,10 @@ export default function Vocabularies() {
       <div className='content'>
         <div className='titleLine'>
             <h1>Vocabulary Words</h1>
-            <button className='addButton' onClick={()=>{setEdit(null); setAddModal(true)}}>Add new Word</button>
+            <button className='addButton' onClick={()=>{setEdit(null); setAddModal(true)}}>Add New Word</button>
         </div>
         <select name='categorySearch' onChange={handleSearch} className='selectCategory'>
-            <option value={0} selected>All Categories</option>
+            <option value={0} defaultValue={0}>All Categories</option>
             {categories.length == 0 ? <option disabled>Không có danh mục</option> 
             : 
             categories.map((category) => {
@@ -173,8 +180,8 @@ export default function Vocabularies() {
                 </div>
                 <div>
                     <label htmlFor="">Category</label>
-                    <select {...register("categoryId", {required: "Danh mục không được để trống"})}>
-                        <option value={0} selected hidden>Select Category</option>
+                    <select {...register("categoryId", {validate: value => value != 0 || "Danh mục không được để trống"})}>
+                        <option value={0} defaultValue={0} hidden>Select Category</option>
                         {categories.length == 0 ? <option disabled>Không có danh mục</option> 
                         : 
                         categories.map((category) => {

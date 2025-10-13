@@ -10,6 +10,15 @@ export const getAllVocabulary = async ({currentPage, search, limit}: {currentPag
   }
 }
 
+export const getAllFlashcard = async ({currentPage, search, limit}: {currentPage: number, search:number, limit: number}) => {
+  const categorySearch = search == 0 ? "" : search;
+  const res = await axios.get(`http://localhost:8080/vocabularies?categoryId_like=${categorySearch}&_page=${currentPage}&_limit=${limit}`);
+  return {
+    data: res.data,
+    totalPages: Math.ceil(+res.headers["x-total-count"] / limit)
+  }
+}
+
 export const postVocabulary = async (data: Vocabulary)=>{
     const res = await axios.post("http://localhost:8080/vocabularies", data);
     return res.data;

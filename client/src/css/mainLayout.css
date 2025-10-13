@@ -60,8 +60,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    bottom: 0;
     box-shadow: 0px 16px 48px 0px #0000002D;
 }
 .footer p{

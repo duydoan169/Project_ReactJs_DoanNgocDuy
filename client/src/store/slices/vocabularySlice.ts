@@ -1,9 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { Vocabulary } from "../../utils/type";
-import { deleteVocabulary, getAllVocabulary, patchVocabulary, postVocabulary } from "../../apis/vocabularyAPI";
+import { deleteVocabulary, getAllFlashcard, getAllVocabulary, patchVocabulary, postVocabulary } from "../../apis/vocabularyAPI";
 
 export const getAllVocabularies = createAsyncThunk("getAllVocabularies", async ({currentPage, search, limit}: {currentPage: number, search:{wordSearch: string, categorySearch: number}, limit: number})=>{
     return getAllVocabulary({currentPage, search, limit});
+})
+
+export const getAllFlashcards = createAsyncThunk("getAllFlashcards", async ({currentPage, search, limit}: {currentPage: number, search: number, limit: number})=>{
+    return getAllFlashcard({currentPage, search, limit});
 })
 
 export const addVocabulary = createAsyncThunk("addVocabulary", async (data: Vocabulary)=>{
@@ -16,7 +20,7 @@ export const removeVocabulary = createAsyncThunk("removeVocabulary", async (id: 
 export const updateVocabulary = createAsyncThunk("updateVocabulary", async (data: Vocabulary)=>{
     return patchVocabulary(data);
 })
-const initialState: {vocabularies: Vocabulary[], totalPages: number} = {vocabularies: [], totalPages: 1}
+const initialState: {vocabularies: Vocabulary[], totalPages: number, flashcards: Vocabulary[], totalFlashcards: number} = {vocabularies: [], totalPages: 1, flashcards: [], totalFlashcards: 1}
 export const vocabularySlice = createSlice({
     name: "vocabulary",
     initialState,
@@ -34,6 +38,10 @@ export const vocabularySlice = createSlice({
         })
         .addCase(updateVocabulary.fulfilled, (state, action)=>{
             state.vocabularies = state.vocabularies.map((vocabulary) =>{ return vocabulary.id == action.payload.id ? action.payload : vocabulary})
+        })
+        .addCase(getAllFlashcards.fulfilled, (state, action)=>{
+            state.flashcards=action.payload.data;
+            state.totalFlashcards=action.payload.totalPages;
         })
     }
 })

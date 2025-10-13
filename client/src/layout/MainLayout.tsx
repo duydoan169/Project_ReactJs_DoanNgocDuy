@@ -33,19 +33,21 @@ export default function MainLayout() {
     });
   }
   return (
-    <div>
-      <div className='header'>
-        <nav>
-            <NavLink id='logo' to={"/"}>VocabApp</NavLink>
-            <NavLink to={"/dashboard"}>Dashboard</NavLink>
-            <NavLink to={"/categories"}>Categories</NavLink>
-            <NavLink to={"/vocabularies"}>Vocabulary</NavLink>
-            <NavLink to={"/flashcard"}>Flashcards</NavLink>
-            <NavLink to={"/quizz"}>Quiz</NavLink>
-        </nav>
-        <button className='logout' onClick={handleLogout}>Logout</button>
+    <div style={{display: 'flex',minHeight: '100vh' , flexDirection: "column", justifyContent: 'space-between'}}>
+      <div>
+        <div className='header'>
+          <nav>
+              <NavLink id='logo' to={"/"}>VocabApp</NavLink>
+              <NavLink to={"/dashboard"}>Dashboard</NavLink>
+              <NavLink to={"/categories"}>Categories</NavLink>
+              <NavLink to={"/vocabularies"}>Vocabulary</NavLink>
+              <NavLink to={"/flashcard"}>Flashcards</NavLink>
+              <NavLink to={"/quizz"}>Quiz</NavLink>
+          </nav>
+          <button className='logout' onClick={handleLogout}>Logout</button>
+        </div>
+        <Outlet></Outlet>
       </div>
-      <Outlet></Outlet>
       <div className='footer'>
         <p>© 2024 VocabApp. All rights reserved.</p>
       </div>

@@ -12,8 +12,8 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    padding: 32px 24px 0;
+    gap: 20px;
+    padding: 0 24px;
 }
 .container .content table{
     max-height: 205px;

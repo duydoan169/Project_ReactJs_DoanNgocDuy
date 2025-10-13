@@ -6,6 +6,7 @@ import MainLayout from './layout/MainLayout'
 import HomePage from './pages/HomePage'
 import Categories from './pages/Categories'
 import Vocabularies from './pages/Vocabulary'
+import Flashcard from './pages/Flashcard'
 
 export default function App() {
   const routes = createBrowserRouter([
@@ -24,6 +25,10 @@ export default function App() {
         {
           path: "/vocabularies",
           element: <Vocabularies></Vocabularies>
+        },
+        {
+          path: "/flashcard",
+          element: <Flashcard></Flashcard>
         }
       ]
     },
