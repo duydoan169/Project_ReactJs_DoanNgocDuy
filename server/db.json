@@ -46,14 +46,14 @@
   "vocabularies": [
     {
       "id": 2,
-      "isLearned": false,
+      "isLearned": true,
       "word": "Computer",
       "meaning": "may tinh",
       "categoryId": "1"
     },
     {
       "id": 4,
-      "isLearned": false,
+      "isLearned": true,
       "word": "motorcycle",
       "meaning": "xe may",
       "categoryId": "2"
@@ -74,10 +74,17 @@
     },
     {
       "id": 7,
-      "isLearned": false,
+      "isLearned": true,
       "word": "dog",
       "meaning": "cho",
       "categoryId": "1"
+    },
+    {
+      "id": 8,
+      "isLearned": true,
+      "word": "t-shirt",
+      "meaning": "ao phong",
+      "categoryId": "2"
     }
   ]
 }
