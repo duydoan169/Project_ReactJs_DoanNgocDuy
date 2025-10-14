@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { Category, Vocabulary } from '../utils/type';
 import { getAllFlashcards, getAllVocabularies, updateVocabulary } from '../store/slices/vocabularySlice';
 import { getAllCategories } from '../store/slices/categorySlice';
+import { getAllVocabulary } from '../apis/vocabularyAPI';
 export default function Flashcard() {
   const categories: Category[] = useSelector((data: {categories: {categories: Category[]}})=>{
     return data.categories.categories;
@@ -26,7 +27,10 @@ export default function Flashcard() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [currentWord, setCurrentWord] = useState<number>(1);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
-  const progressPercent = totalFlashcards > 0 ? (currentWord / totalFlashcards) * 100 : 0;
+  const [allVocab, setAllVocab] = useState<Vocabulary[]>();
+  const learnedWordsCount = allVocab?.filter((item) => item.isLearned == true).length ?? 0;
+  const totalWordsCount = allVocab?.length ?? 0
+  const progressPercent = totalWordsCount > 0 ? (learnedWordsCount / totalWordsCount) * 100 : 0;
 
   const dispatch: any = useDispatch();
 
@@ -50,9 +54,8 @@ export default function Flashcard() {
     if(flashcards.length != 0){
       await dispatch(updateVocabulary({...flashcards[0], isLearned: !flashcards[0].isLearned}));
       dispatch(getAllFlashcards({currentPage: currentWord, search: search, limit: 1}));
-      // if(currentWord < totalFlashcards){
-      //   setCurrentWord(currentWord+1);
-      // }
+      const res = await getAllVocabulary({currentPage: 1, search: {wordSearch: "", categorySearch: search}, limit: 999});
+      setAllVocab(res.data);
     }else{
       return
     }
@@ -61,6 +64,7 @@ export default function Flashcard() {
   useEffect(()=>{
     dispatch(getAllVocabularies({currentPage: currentPage, search:{wordSearch: "", categorySearch: search}, limit: 5}));
     dispatch(getAllFlashcards({currentPage: currentWord, search: search, limit: 1}));
+    
   }, [dispatch, currentPage, currentWord, search]);
 
   useEffect(() => {
@@ -71,6 +75,12 @@ export default function Flashcard() {
     setIsFlipped(false);
   }, [currentWord]);
 
+  useEffect(()=>{
+    getAllVocabulary({currentPage: 1, search: {wordSearch: "", categorySearch: search}, limit: 999})
+    .then((res)=>{
+      setAllVocab(res.data);
+    })
+  }, [search])
   return (
     <div className='container'>
       <div className='content'>
@@ -101,10 +111,10 @@ export default function Flashcard() {
         <div className='progressBar'>
           <div className='wordLine'>
             <p>Progress</p>
-            <p>{flashcards.length!=0 ? currentWord : 0}/{totalFlashcards}</p>
+            <p>{learnedWordsCount}/{totalWordsCount}</p>
           </div>
           <div className='outerProgress'>
-            <div style={{ width: `${flashcards.length !== 0 ? progressPercent : 0}%` }} className='innerProgress'></div>
+            <div style={{ width: `${progressPercent}%` }} className='innerProgress'></div>
           </div>
         </div>
         <h2>Word List</h2>
