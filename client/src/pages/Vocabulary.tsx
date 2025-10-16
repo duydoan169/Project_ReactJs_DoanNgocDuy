@@ -60,7 +60,7 @@ export default function Vocabularies() {
   const userSubmit = async (data: {word: string, meaning: string, categoryId: number})=>{
     try {
       const fullVocab = (await getAllVocabulary({currentPage: 1, search: {wordSearch: "", categorySearch: 0}, limit: 999})).data;
-      if(!fullVocab.some((vocabulary: Vocabulary) => vocabulary.word == data.word)){
+      if(!fullVocab.some((vocabulary: Vocabulary) => vocabulary.word == data.word && vocabulary.id != edit?.id)){
         if(edit){
           await dispatch(updateVocabulary({...edit, ...data}));
           dispatch(getAllVocabularies({currentPage: page, search: search, limit: 5}));

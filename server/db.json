@@ -27,63 +27,63 @@
     {
       "id": 2,
       "createdAt": "14:17:45 9/10/2025",
-      "name": "Quan ao",
-      "description": "aa"
+      "name": "Quần áo",
+      "description": "quần áo"
     },
     {
       "id": 3,
       "createdAt": "14:18:08 9/10/2025",
-      "name": "Do an",
-      "description": "do an"
+      "name": "Đồ ăn",
+      "description": "đồ ăn"
     },
     {
-      "id": 5,
-      "createdAt": "15:53:23 10/10/2025",
-      "name": "lập trình Scratch cơ bản",
-      "description": "a"
+      "id": 4,
+      "createdAt": "00:21:22 16/10/2025",
+      "name": "Xe cộ",
+      "description": "xe cộ"
     }
   ],
   "vocabularies": [
     {
       "id": 2,
-      "isLearned": true,
+      "isLearned": false,
       "word": "Computer",
-      "meaning": "may tinh",
+      "meaning": "máy tính",
       "categoryId": "1"
     },
     {
       "id": 4,
-      "isLearned": false,
+      "isLearned": true,
       "word": "motorcycle",
-      "meaning": "xe may",
+      "meaning": "xe máy",
       "categoryId": "2"
     },
     {
       "id": 5,
       "isLearned": false,
       "word": "cat",
-      "meaning": "meo",
+      "meaning": "mèo",
       "categoryId": "1"
     },
     {
       "id": 6,
       "isLearned": false,
       "word": "bread",
-      "meaning": "banh mi",
+      "meaning": "bánh mì",
       "categoryId": "3"
     },
     {
       "id": 7,
       "isLearned": false,
       "word": "dog",
-      "meaning": "cho",
+      "meaning": "con chó",
       "categoryId": "1"
     },
     {
       "id": 8,
       "isLearned": false,
       "word": "t-shirt",
-      "meaning": "ao phong",
+      "meaning": "áo phông",
       "categoryId": "2"
     }
   ]
